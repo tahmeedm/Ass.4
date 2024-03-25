@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import ProductList from './ProductList';
 import Cart from './Cart';
@@ -14,13 +14,27 @@ const Productpage = () => {
         }
     }, []);
 
+    const handleAddToCart = (product) => {
+        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingItemIndex !== -1) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems[existingItemIndex].quantity++;
+            setCartItems(updatedCartItems);
+            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        } else {
+            const updatedCartItems = [...cartItems, { ...product, quantity: 1 }];
+            setCartItems(updatedCartItems);
+            localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        }
+    };
+
     return (
         <div className="product-page">
             <Header />
-            <table>
+            <table style={{width: "100%"}}>
                 <tr>
-                    <td><ProductList /></td>
-                    <td style={{ verticalAlign: 'top' }}><Cart /></td>
+                    <td style={{width:"50%"}}><ProductList onAddToCart={handleAddToCart} /></td>
+                    <td style={{ verticalAlign: 'top' }}><Cart cartItems={cartItems} setCartItems={setCartItems} /></td>
                 </tr>
             </table>
             <Footer />

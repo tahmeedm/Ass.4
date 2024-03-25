@@ -17,7 +17,7 @@ const CartItem = ({ product, onRemove }) => {
                 <h3>{name}</h3>
                 <p>Price: ${price}</p>
                 <p>Quantity: {quantity}</p>
-                <p>Total Price: ${price * quantity}</p>
+                <p>Total Price: ${Math.round(price * quantity * 100) / 100}</p>
             </div>
             <button onClick={handleRemove}>Remove</button>
         </div>
