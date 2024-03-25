@@ -9,9 +9,9 @@ const Header = () => {
         <div>Company Name</div>
       </div>
       <nav style={{ marginTop: '20px', width: '195%', display: 'flex', justifyContent: 'space-evenly' }}>
-        <NavLink to="/" exact activeClassName="active">Home</NavLink>
-        <NavLink to="/products" activeClassName="active">Products</NavLink>
-        <NavLink to="/login" activeClassName="active">Login</NavLink>
+        <NavLink to="/" activeclassname="active">Home</NavLink>
+        <NavLink to="/products" activeclassname="active">Products</NavLink>
+        <NavLink to="/login" activeclassname="active">Login</NavLink>
       </nav>
     </header>
   );
