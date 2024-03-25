@@ -30,7 +30,7 @@ const Productpage = () => {
 
     return (
         <div className="product-page">
-            <Header />
+            
             <table style={{width: "100%"}}>
                 <tr>
                     <td style={{width:"50%"}}><ProductList onAddToCart={handleAddToCart} /></td>
