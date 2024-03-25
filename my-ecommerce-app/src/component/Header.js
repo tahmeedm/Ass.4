@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
   const activeStyle = ({ isActive }) => {
     return {
-      color: isActive ? 'red' : 'black', // Replace 'red' with the color you want for active links
+      color: isActive ? 'purple' : 'blue', 
     };
   };
 

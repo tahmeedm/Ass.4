@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/products" element={<Productpage />} />
-        {/* Add other routes here */}
+       
       </Routes>
     </div>
   );
