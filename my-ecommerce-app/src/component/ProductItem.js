@@ -13,7 +13,7 @@ const ProductItem = ({ product, onAddToCart }) => {
 
     return (
         <div className="product-item">
-            <img src={product.image} alt={product.name} style={{ maxWidth: '200px', maxHeight: '200px' }} />
+            <img src={product.image} alt={product.name} style={{ height:"200px" }} />
             <h3 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 {product.name}
             </h3>

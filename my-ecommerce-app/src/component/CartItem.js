@@ -6,13 +6,10 @@ const CartItem = ({ product, onRemove }) => {
     const handleRemove = () => {
         onRemove(product);
     };
-    const imageStyle = {
-        maxWidth: '200px',
-        maxHeight: '200px',
-    };
+
     return (
         <div className="cart-item">
-            <img src={image} alt={name} style={imageStyle}/>
+            <img src={image} alt={name} style={{height:"200px"}}/>
             <div className="product-details">
                 <h3>{name}</h3>
                 <p>Price: ${price}</p>

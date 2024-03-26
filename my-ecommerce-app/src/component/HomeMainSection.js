@@ -22,7 +22,7 @@ const HomeMainSection = () => {
           <div key={index}>
             <h4>{review.customerName}</h4>
             <p>{review.reviewContent}</p>
-            <p>{"★".repeat(review.stars)}</p>
+            <p>Rating: {"★".repeat(review.stars)}</p>
           </div>
         ))}
       </section>

@@ -30,10 +30,10 @@ const Productpage = () => {
 
     return (
         <div className="product-page">
-            
-            <table style={{width: "100%"}}>
+            <Header />
+            <table style={{width:"100%"}}>
                 <tr>
-                    <td style={{width:"50%"}}><ProductList onAddToCart={handleAddToCart} /></td>
+                    <td><ProductList onAddToCart={handleAddToCart} /></td>
                     <td style={{ verticalAlign: 'top' }}><Cart cartItems={cartItems} setCartItems={setCartItems} /></td>
                 </tr>
             </table>
