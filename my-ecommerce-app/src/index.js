@@ -1,3 +1,5 @@
+// Group: 6
+// Names: Tahmeed Mahmud (30158740), Martin Liu(30161516) 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
