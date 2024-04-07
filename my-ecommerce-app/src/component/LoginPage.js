@@ -1,27 +1,47 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+
+const Message = ({ text, isError }) => (
+  <div style={{ color: isError ? 'red' : 'green' }}>
+    {text}
+  </div>
+);
 
 const LoginForm = ({ onSwitch }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (!username || !password) {
-      alert('Please fill in all fields');
-      return;
+    setMessage('');
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        navigate('/products');
+      } else {
+        setMessage(data.error);
+      }
+    } catch (error) {
+      setMessage('Failed to connect to the server.');
     }
-   
-    console.log('Logged in with', username, password);
   };
 
   return (
     <div>
       <h2>Login</h2>
+      {message && <Message text={message} isError={true} />}
       <form onSubmit={handleLogin}>
         <div>
-        <label>Username:</label>
+          <label>Username:</label>
           <input
             type="text"
             placeholder="Enter your username"
@@ -30,7 +50,7 @@ const LoginForm = ({ onSwitch }) => {
           />
         </div>
         <div>
-        <label>Password:</label>
+          <label>Password:</label>
           <input
             type="password"
             placeholder="Enter your password"
@@ -54,27 +74,45 @@ const SignupForm = ({ onSwitch }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setMessage('');
     if (!username || !password || !confirmPassword || !email) {
-      alert('Please fill in all fields');
+      setMessage('Please fill in all fields');
       return;
     }
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      setMessage('Passwords do not match');
       return;
     }
-    
-    console.log('Signed up with', username, email);
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, email }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('User registered successfully.');
+        navigate('/login'); 
+      } else {
+        setMessage(data.error);
+      }
+    } catch (error) {
+      setMessage('Failed to connect to the server.');
+    }
   };
 
   return (
     <div>
       <h2>Signup</h2>
+      {message && <Message text={message} isError={true} />}
       <form onSubmit={handleSignup}>
         <div>
-        <label>Username:</label>
+          <label>Username:</label>
           <input
             type="text"
             placeholder="Enter your username"
@@ -83,7 +121,7 @@ const SignupForm = ({ onSwitch }) => {
           />
         </div>
         <div>
-        <label>Password:</label>
+          <label>Password:</label>
           <input
             type="password"
             placeholder="Enter your password"
@@ -91,9 +129,8 @@ const SignupForm = ({ onSwitch }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <div>
-        <label>Confirm Password:</label>
+          <label>Confirm Password:</label>
           <input
             type="password"
             placeholder="Confirm your password"
@@ -102,7 +139,7 @@ const SignupForm = ({ onSwitch }) => {
           />
         </div>
         <div>
-        <label>Email:</label>
+          <label>Email:</label>
           <input
             type="email"
             placeholder="Enter your email"
