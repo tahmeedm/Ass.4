@@ -4,8 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Homepage from './component/Homepage';
 import Productpage from './component/Productpage';
-<Route path="/login" element={<LoginPage />} />
-
 
 function App() {
   return (
