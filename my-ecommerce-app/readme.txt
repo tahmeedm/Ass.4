@@ -1,6 +1,8 @@
 npm install react-router-dom
 pip install Flask
 npm install react-router-dom@6
+pip install flask_cors
+
 
 In order to run the front end and backend concurrently, you will need to first open a terminal and run the following commands:
     1. Navigate to Backend directory: cd my-ecommerce-app/Backend
