@@ -1,7 +1,7 @@
 npm install react-router-dom
 pip install Flask
 npm install react-router-dom@6
-pip install flSK_CORS
+pip install flask_cors
 
 
 In order to run the front end and backend concurrently, you will need to first open a terminal and run the following commands:
